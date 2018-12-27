@@ -16,7 +16,8 @@ import xyz.ashiras.model.Books;
 import xyz.ashiras.service.GreetingService;
 
 /**
- *
+ * Books API
+ * 
  * @author Fumio SAGAWA
  */
 @RestController

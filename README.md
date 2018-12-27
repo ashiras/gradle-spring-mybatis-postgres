@@ -65,6 +65,6 @@ $ gradle run
 ```
 |- controller  REST API
 |- model       OR-Mapper および POJO
-|- Service     OR-Mapper および POJO
+|- Service     Transaction Manager　　および JPA
 ```
 
