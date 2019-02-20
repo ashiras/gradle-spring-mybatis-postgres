@@ -1,51 +1,38 @@
 buildscript {
-  ext {
-    springBootVersion = '1.5.9.RELEASE'
-    mybatisVersion = '1.4'
-  }
-  repositories {
-    mavenCentral()
-    maven {
-      url 'https://plugins.gradle.org/m2/'
-    }
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    classpath("gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:${mybatisVersion}")
-    classpath("org.postgresql:postgresql:42.2.5")
-  }
+	ext {
+		springBootVersion = '1.5.19.BUILD-SNAPSHOT'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
 
-apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
-war {
-  archiveName 'web.war'
-}
-mainClassName = 'xyz.ashiras.Application'
 
-jar {
-  baseName = 'gradle-spring-mybatis-postgres'
-  version =  '0.0.1'
-}
+group = 'xyz.ashiras'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
 
 repositories {
-  mavenCentral()
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+configurations {
+	providedRuntime
+}
 
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-  // 以下のページをもとにバージョンを指定します。
-  // http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
-  // http://search.maven.org/#artifactdetails|org.mybatis.spring.boot|mybatis-spring-boot-starter|1.3.0|jar
-  compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
-  compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-	runtime('org.postgresql:postgresql:42.2.5')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	implementation('org.springframework.boot:spring-boot-starter-data-rest')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
