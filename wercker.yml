@@ -24,7 +24,7 @@ deploy:
         git config --global user.email "${USER_EMAIL}"
         git config --global user.name "${USER_NANE}"
         git checkout -b release
-        ./gradlew -Dspring.profiles.active=development:azure:azure build
+        ./gradlew build
         ls -a | grep -v -E 'build|.git$|\.\.$|\.$' | xargs rm -r
         mkdir webapps
         mv build/libs/ROOT.war webapps/ROOT.war
