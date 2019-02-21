@@ -23,7 +23,7 @@ public class HelloController {
   GreetingService service;
 
   @GetMapping()
-  String get(@RequestParam(value = "name", defaultValue = "") String name) {
+  String get() {
     return "Hello World";
   }
 }
